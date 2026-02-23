@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIA Philippines — Total Protection. Total Life.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #D0021B;
+    --deep-red: #8B0000;
+    --gold: #C9A84C;
+    --gold-light: #E8D49A;
+    --dark: #0A0A0A;
+    --charcoal: #1A1A1A;
+    --mid: #2E2E2E;
+    --stone: #6B6B6B;
+    --cream: #FAF8F3;
+    --warm-white: #F5F2EC;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--cream);
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(250,248,243,0.65); text-decoration: none; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--red); color: #fff;
+    padding: 0.55rem 1.6rem; border-radius: 2px;
+    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.3s;
+  }
+  .nav-cta:hover { background: var(--deep-red); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+    background: var(--dark);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 70% at 70% 50%, rgba(208,2,27,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 10% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
+      linear-gradient(135deg, #0A0A0A 0%, #141414 50%, #0D0D0D 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: 
+      linear-gradient(rgba(250,248,243,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(250,248,243,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; padding: 0 4rem;
+    padding-top: 8rem;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 0.4rem 1.2rem; border-radius: 50px; margin-bottom: 2.5rem;
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-light);
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.2rem, 7vw, 6.5rem);
+    font-weight: 300; line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 1.05rem; color: rgba(250,248,243,0.6); font-weight: 300;
+    max-width: 520px; line-height: 1.75; margin-bottom: 3.5rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--red); color: #fff;
+    padding: 1rem 2.4rem; border-radius: 2px;
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s; border: none; cursor: pointer;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--deep-red); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--cream);
+    padding: 1rem 2.4rem; border-radius: 2px;
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s;
+    border: 1px solid rgba(250,248,243,0.25); display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-scroll {
+    position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(250,248,243,0.35); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    animation: scrollPulse 2.5s ease-in-out infinite;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, rgba(201,168,76,0.7), transparent);
+    animation: lineGrow 2.5s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+  @keyframes lineGrow { 0%,100%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} }
+
+  .hero-stats {
+    position: absolute; right: 4rem; top: 50%; transform: translateY(-30%);
+    display: flex; flex-direction: column; gap: 2rem;
+    opacity: 0.85;
+  }
+  .hero-stat { text-align: right; }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 300; color: var(--gold);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(250,248,243,0.45); margin-top: 0.3rem;
+  }
+
+  /* SECTION BASE */
+  section { padding: 8rem 4rem; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-label::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--gold); }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 300;
+    line-height: 1.15; margin-bottom: 1.5rem;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
+  .lead { font-size: 1rem; color: rgba(250,248,243,0.6); line-height: 1.8; max-width: 620px; font-weight: 300; }
+
+  /* DIVIDERS */
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent);
+    margin: 0;
+  }
+  .full-width { max-width: 100%; padding: 0; }
+
+  /* TRUST TRIO */
+  .trust-section { background: var(--charcoal); padding: 8rem 0; max-width: 100%; }
+  .trust-inner { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+  .trust-header { margin-bottom: 5rem; }
+  .trust-trio {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; border: 1px solid rgba(201,168,76,0.15);
+  }
+  .trust-card {
+    padding: 3.5rem 3rem; border-right: 1px solid rgba(201,168,76,0.15);
+    position: relative; overflow: hidden; transition: background 0.4s;
+  }
+  .trust-card:last-child { border-right: none; }
+  .trust-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: transparent; transition: background 0.4s;
+  }
+  .trust-card:hover::before { background: var(--gold); }
+  .trust-card:hover { background: rgba(201,168,76,0.04); }
+  .trust-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; font-weight: 300; color: rgba(201,168,76,0.15);
+    line-height: 1; margin-bottom: 1.5rem;
+  }
+  .trust-partner {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .trust-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem; font-weight: 400; margin-bottom: 1rem;
+  }
+  .trust-card p { font-size: 0.9rem; color: rgba(250,248,243,0.6); line-height: 1.8; font-weight: 300; }
+  .trust-tagline {
+    margin-top: 4rem; text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 300; font-style: italic;
+    color: rgba(201,168,76,0.8);
+  }
+
+  /* VITALITY + MEDICARD */
+  .vitality-section { background: var(--dark); }
+  .vitality-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: start; margin-top: 4rem;
+  }
+  .vitality-path {
+    position: relative; padding: 3rem;
+    border: 1px solid rgba(201,168,76,0.2);
+    background: linear-gradient(135deg, rgba(201,168,76,0.04), transparent);
+  }
+  .vitality-path-label {
+    position: absolute; top: -0.7rem; left: 2rem;
+    background: var(--dark); padding: 0 0.8rem;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+  }
+  .vitality-path h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem; font-weight: 400; margin-bottom: 1rem;
+  }
+  .vitality-path p { font-size: 0.9rem; color: rgba(250,248,243,0.6); line-height: 1.8; font-weight: 300; margin-bottom: 1.5rem; }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .feature-list li {
+    font-size: 0.85rem; color: rgba(250,248,243,0.7); font-weight: 300;
+    display: flex; align-items: flex-start; gap: 0.7rem;
+  }
+  .feature-list li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+  .vitality-arrow {
+    display: flex; align-items: center; justify-content: center;
+    position: relative; margin-top: 2rem;
+  }
+  .vitality-arrow-line {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold);
+  }
+  .vitality-continuum {
+    background: var(--charcoal); padding: 2.5rem 3rem; margin-top: 4rem;
+    border-left: 3px solid var(--gold);
+  }
+  .vitality-continuum p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-style: italic; font-weight: 300;
+    color: var(--cream); line-height: 1.6;
+  }
+
+  /* BPI ADVANTAGE */
+  .bpi-section {
+    background: linear-gradient(135deg, var(--charcoal) 0%, #111 100%);
+    padding: 8rem 0; max-width: 100%;
+  }
+  .bpi-inner { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+  .bpi-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; align-items: center; margin-top: 4rem; }
+  .bpi-blurb {
+    font-size: 1.05rem; color: rgba(250,248,243,0.7); line-height: 1.9; font-weight: 300;
+    border-left: 3px solid var(--red); padding-left: 2rem;
+  }
+  .bpi-features { display: flex; flex-direction: column; gap: 1.5rem; }
+  .bpi-feature {
+    padding: 1.5rem 2rem; background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.12); border-radius: 2px;
+  }
+  .bpi-feature h4 {
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .bpi-feature p { font-size: 0.88rem; color: rgba(250,248,243,0.6); font-weight: 300; line-height: 1.7; }
+
+  /* PRODUCTS */
+  .products-section { background: var(--dark); }
+  .products-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 4rem;
+  }
+  .product-card {
+    padding: 2.5rem 2rem; background: var(--charcoal);
+    border: 1px solid rgba(250,248,243,0.06);
+    position: relative; overflow: hidden; transition: all 0.4s;
+    cursor: default;
+  }
+  .product-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 0; background: var(--red); transition: height 0.4s;
+  }
+  .product-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.25); }
+  .product-card:hover::after { height: 3px; }
+  .product-icon { font-size: 1.5rem; margin-bottom: 1.2rem; }
+  .product-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-weight: 400; margin-bottom: 0.8rem;
+  }
+  .product-card p { font-size: 0.82rem; color: rgba(250,248,243,0.5); line-height: 1.7; font-weight: 300; }
+
+  /* CTA SECTION */
+  .cta-section { background: var(--dark); padding: 8rem 0; max-width: 100%; }
+  .cta-inner { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+  .cta-header { text-align: center; margin-bottom: 5rem; }
+  .cta-header .section-label { justify-content: center; }
+  .cta-header .section-label::after { display: none; }
+  .cta-header .section-label::before { content: ''; flex: 0 0 40px; height: 1px; background: var(--gold); }
+  .cta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .cta-card {
+    padding: 3rem 2.5rem; position: relative; overflow: hidden;
+  }
+  .cta-card-1 { background: linear-gradient(135deg, #0D2318 0%, #0A1A10 100%); border: 1px solid rgba(34,197,94,0.2); }
+  .cta-card-2 { background: linear-gradient(135deg, #1A0D00 0%, #110800 100%); border: 1px solid rgba(201,168,76,0.25); }
+  .cta-card-3 { background: linear-gradient(135deg, #1A0005 0%, #0D0003 100%); border: 1px solid rgba(208,2,27,0.25); }
+  .cta-accent {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .cta-card-1 .cta-accent { color: #4ADE80; }
+  .cta-card-2 .cta-accent { color: var(--gold); }
+  .cta-card-3 .cta-accent { color: #F87171; }
+  .cta-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem; font-weight: 400; margin-bottom: 1rem; line-height: 1.2;
+  }
+  .cta-card p { font-size: 0.88rem; color: rgba(250,248,243,0.6); line-height: 1.75; font-weight: 300; margin-bottom: 2rem; }
+  .cta-btn {
+    display: inline-block; padding: 0.75rem 1.8rem; border-radius: 2px;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .cta-card-1 .cta-btn { background: rgba(74,222,128,0.15); color: #4ADE80; border: 1px solid rgba(74,222,128,0.3); }
+  .cta-card-1 .cta-btn:hover { background: rgba(74,222,128,0.25); }
+  .cta-card-2 .cta-btn { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.35); }
+  .cta-card-2 .cta-btn:hover { background: rgba(201,168,76,0.25); }
+  .cta-card-3 .cta-btn { background: var(--red); color: #fff; border: 1px solid transparent; }
+  .cta-card-3 .cta-btn:hover { background: var(--deep-red); }
+
+  /* WHY AIA */
+  .why-section { background: var(--dark); }
+  .why-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; margin-top: 4rem; }
+  .why-numbers { display: flex; flex-direction: column; gap: 3rem; }
+  .why-number { border-top: 1px solid rgba(201,168,76,0.2); padding-top: 1.5rem; }
+  .why-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1;
+  }
+  .why-desc { font-size: 0.82rem; color: rgba(250,248,243,0.5); margin-top: 0.3rem; font-weight: 300; }
+  .why-text { font-size: 1rem; color: rgba(250,248,243,0.65); line-height: 1.9; font-weight: 300; }
+  .why-text p { margin-bottom: 1.5rem; }
+  .why-text strong { color: var(--cream); font-weight: 500; }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal); border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 4rem; text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 600; color: var(--cream); margin-bottom: 1rem;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-tagline {
+    font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(250,248,243,0.35); margin-bottom: 2rem;
+  }
+  .footer-partners {
+    display: flex; align-items: center; justify-content: center; gap: 3rem;
+    margin-bottom: 2rem; flex-wrap: wrap;
+  }
+  .footer-partner {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(250,248,243,0.4); padding: 0.4rem 1rem;
+    border: 1px solid rgba(250,248,243,0.1); border-radius: 50px;
+  }
+  .footer-disclaimer {
+    font-size: 0.72rem; color: rgba(250,248,243,0.25); max-width: 600px; margin: 0 auto; line-height: 1.8;
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 968px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 2rem; }
+    .hero-content { padding: 0 2rem; padding-top: 7rem; }
+    .hero-stats { display: none; }
+    .trust-trio { grid-template-columns: 1fr; }
+    .trust-card { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.15); }
+    .vitality-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .bpi-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .cta-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .trust-inner, .bpi-inner, .cta-inner { padding: 0 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AIA <span>Philippines</span></div>
+  <div class="nav-links">
+    <a href="#trust-trio">Our Alliance</a>
+    <a href="#vitality">Wellness</a>
+    <a href="#bpi">BPI Clients</a>
+    <a href="#products">Products</a>
+    <a href="#cta">Get Started</a>
+  </div>
+  <a href="https://www.aia.com.ph/en" class="nav-cta">Speak with Us</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">AIA Philippines — Authorized Agency</div>
+    <h1>
+      Protect what<br>
+      matters <em>most.</em><br>
+      For life.
+    </h1>
+    <p class="hero-sub">
+      Where the financial strength of BPI, the global reach of AIA, and the medical network of MediCard converge — delivering protection that is complete, seamless, and yours.
+    </p>
+    <div class="hero-ctas">
+      <a href="#trust-trio" class="btn-primary">Explore Total Protection</a>
+      <a href="#products" class="btn-outline">View Products</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">100+</div>
+      <div class="hero-stat-label">Years of Global Trust</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">18M+</div>
+      <div class="hero-stat-label">Customers in Asia</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">AAA</div>
+      <div class="hero-stat-label">Financial Strength</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TRUST TRIO -->
+<div id="trust-trio" class="trust-section full-width">
+  <div class="trust-inner">
+    <div class="trust-header fade-up">
+      <div class="section-label">The Alliance</div>
+      <h2>Total <em>Protection</em></h2>
+      <p class="lead">Three institutions. One seamless promise. Together, BPI, AIA, and MediCard form an ecosystem of protection unlike anything else in the Philippines.</p>
+    </div>
+
+    <div class="trust-trio fade-up">
+      <div class="trust-card">
+        <div class="trust-num">01</div>
+        <div class="trust-partner">Bank of the Philippine Islands</div>
+        <h3>Financial Bedrock</h3>
+        <p>For over 170 years, BPI has stood as the Philippines' most trusted financial institution. As your bancassurance partner, BPI integrates your protection seamlessly into your existing wealth — auto-debit, policy management, and estate planning, all under one roof. Your bank already knows your money. Now it protects your life.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-num">02</div>
+        <div class="trust-partner">AIA Group</div>
+        <h3>Global Expertise</h3>
+        <p>As Asia's largest independent publicly listed pan-Asian life insurance group, AIA has protected families across 18 markets for over a century. Our financial strength is unmatched — and our commitment to helping people live healthier, longer, better lives drives every policy we design. This is not just insurance. This is a lifelong partnership.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-num">03</div>
+        <div class="trust-partner">MediCard Philippines</div>
+        <h3>Medical Access</h3>
+        <p>With a network of over 2,000 affiliated hospitals and clinics nationwide, MediCard transforms your AIA policy into a direct gateway to healthcare. No reimbursements. No delays. Just immediate, dignified access to the medical care your family deserves — from check-ups to critical procedures.</p>
+      </div>
+    </div>
+
+    <div class="trust-tagline fade-up">
+      "The stability of BPI, the expertise of AIA, the care of MediCard — working as one for you."
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- VITALITY + MEDICARD -->
+<section id="vitality" class="vitality-section">
+  <div class="section-label fade-up">Wellness Continuum</div>
+  <h2 class="fade-up">From <em>Prevention</em><br>to Protection</h2>
+  <p class="lead fade-up">AIA Vitality and MediCard are not separate products — they are two chapters of your complete health story.</p>
+
+  <div class="vitality-grid">
+    <div>
+      <div class="vitality-path fade-up">
+        <div class="vitality-path-label">Chapter 1 — AIA Vitality</div>
+        <div style="height: 0.8rem"></div>
+        <h3>Preventative Wellness</h3>
+        <p>AIA Vitality rewards you for living well. Track your steps, complete health assessments, visit the gym — and earn points that reduce your premiums, unlock exclusive rewards, and extend your healthy years. Prevention is the most powerful form of protection.</p>
+        <ul class="feature-list">
+          <li>Earn Vitality Points for healthy activities</li>
+          <li>Premium discounts as you reach higher Status tiers</li>
+          <li>Partner rewards: fitness, nutrition, travel, lifestyle</li>
+          <li>Annual health screenings & risk assessments</li>
+        </ul>
+      </div>
+
+      <div style="text-align: center; padding: 1.5rem 0; color: rgba(201,168,76,0.6); font-size: 1.5rem;">↓</div>
+
+      <div class="vitality-path fade-up">
+        <div class="vitality-path-label">Chapter 2 — MediCard Integration</div>
+        <div style="height: 0.8rem"></div>
+        <h3>Medical Access</h3>
+        <p>When health challenges arise despite your best efforts, MediCard ensures you are never alone. Your AIA policy with MediCard integration gives you cashless, direct-pay access to the Philippines' most comprehensive hospital network.</p>
+        <ul class="feature-list">
+          <li>2,000+ affiliated hospitals and clinics nationwide</li>
+          <li>Cashless, direct billing — no out-of-pocket stress</li>
+          <li>Outpatient, specialist, and emergency coverage</li>
+          <li>From the gym to the ER — you are always covered</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fade-up">
+      <div style="height: 3rem"></div>
+      <div class="vitality-continuum">
+        <p>"Stay well with Vitality. When life happens, MediCard is there. AIA connects both — so you live fully, in every chapter."</p>
+      </div>
+      <div style="height: 3rem"></div>
+      <div style="padding: 3rem; background: var(--charcoal); border: 1px solid rgba(250,248,243,0.06);">
+        <div class="section-label" style="margin-bottom: 1.5rem;">The Value Proposition</div>
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; line-height: 1.6; color: var(--cream); margin-bottom: 1.5rem;">You invest in your health today. We invest in your access to care tomorrow.</p>
+        <p style="font-size: 0.88rem; color: rgba(250,248,243,0.55); line-height: 1.8; font-weight: 300;">This is not a passive policy — it is a dynamic system that grows with your health journey. The healthier you live, the more you save. And should anything change, your MediCard safety net is already in place, waiting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BPI ADVANTAGE -->
+<div id="bpi" class="bpi-section full-width">
+  <div class="bpi-inner">
+    <div class="section-label fade-up">Exclusively for BPI Clients</div>
+    <h2 class="fade-up">The <em>BPI Advantage</em></h2>
+
+    <div class="bpi-grid">
+      <div class="fade-up">
+        <p class="bpi-blurb">
+          You already trust BPI with your savings, your loans, your investments. Your relationship with BPI is one of the most valuable financial assets you have — and now it can protect your life, too.
+          <br><br>
+          A BPI-AIA policy is the most natural extension of the financial life you have already built. Premium payments are automatically debited from your BPI account. Your policy details are accessible through the same channels you already use. And your family's financial future is anchored to an institution with over 170 years of trust in the Philippines.
+          <br><br>
+          You do not need to start over. You need only to add one more layer of security to the wealth you have worked hard to create.
+        </p>
+        <div style="margin-top: 2.5rem;">
+          <a href="#cta" class="btn-primary">I'm a BPI Client — Tell Me More</a>
+        </div>
+      </div>
+      <div class="bpi-features fade-up">
+        <div class="bpi-feature">
+          <h4>Seamless Auto-Debit</h4>
+          <p>Your premiums are collected directly from your BPI account — no missed payments, no lapses, no administrative friction.</p>
+        </div>
+        <div class="bpi-feature">
+          <h4>Unified Wealth View</h4>
+          <p>Manage your savings, investments, and life insurance protection through your existing BPI relationship — one advisor, one platform.</p>
+        </div>
+        <div class="bpi-feature">
+          <h4>Estate & Succession Ready</h4>
+          <p>AIA's life insurance proceeds are designed to complement your BPI estate, ensuring seamless wealth transfer to the people you love.</p>
+        </div>
+        <div class="bpi-feature">
+          <h4>Priority Service</h4>
+          <p>As a BPI-AIA policyholder, you benefit from dedicated servicing channels through both institutions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PRODUCTS -->
+<section id="products" class="products-section">
+  <div class="section-label fade-up">What We Offer</div>
+  <h2 class="fade-up">Complete <em>Coverage</em><br>for Every Stage of Life</h2>
+  <p class="lead fade-up">From your first policy to your legacy — AIA has a solution designed precisely for where you are and where you are going.</p>
+
+  <div class="products-grid fade-up">
+    <div class="product-card">
+      <div class="product-icon">🛡</div>
+      <h3>Life Protection</h3>
+      <p>Term and whole life plans that ensure your family's financial security, no matter what. Up to ₱20M in coverage.</p>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">💊</div>
+      <h3>Health & Medical</h3>
+      <p>AIA Med-Assist covers 90% of your in-patient hospital bills. AIA Critical Protect 100 covers 100 critical illnesses until age 100.</p>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">📈</div>
+      <h3>Investment-Linked</h3>
+      <p>Build wealth while you protect your family. Variable life plans with access to AIA's award-winning fund portfolio.</p>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">🌱</div>
+      <h3>Savings Plans</h3>
+      <p>Guaranteed returns plus life insurance — because disciplined savings and protection should never be separated.</p>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">❤️</div>
+      <h3>AIA Vitality</h3>
+      <p>The science-backed wellness program that rewards healthy living with real discounts, real rewards, real results.</p>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">🏥</div>
+      <h3>MediCard HMO</h3>
+      <p>Cashless access to 2,000+ hospitals and clinics. Seamlessly integrated with your AIA life policy.</p>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">👨‍👩‍👧</div>
+      <h3>Family Plans</h3>
+      <p>Comprehensive coverage for every member of your household — from your children's education to your retirement.</p>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">🏢</div>
+      <h3>Employee Benefits</h3>
+      <p>Group life, health, and wellness solutions for businesses who understand that their people are their greatest asset.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY AIA -->
+<section class="why-section">
+  <div class="why-grid">
+    <div class="fade-up">
+      <div class="section-label">Why AIA</div>
+      <h2>A Century<br>of <em>Trust</em></h2>
+      <div class="why-numbers">
+        <div class="why-number">
+          <div class="why-num">100+</div>
+          <div class="why-desc">Years protecting Asian families</div>
+        </div>
+        <div class="why-number">
+          <div class="why-num">18</div>
+          <div class="why-desc">Markets across Asia-Pacific</div>
+        </div>
+        <div class="why-number">
+          <div class="why-num">₱B+</div>
+          <div class="why-desc">Claims paid to Filipino families</div>
+        </div>
+      </div>
+    </div>
+    <div class="why-text fade-up">
+      <div style="height: 4rem"></div>
+      <p>AIA Philippines is part of the <strong>AIA Group</strong> — Asia's largest independent, publicly listed pan-Asian life insurance group. With a heritage spanning over a century and operations across 18 markets, AIA is not a regional insurer that expanded internationally. We were born international, built for Asia, and committed to the Philippines.</p>
+      <p>Our partnership with <strong>Bank of the Philippine Islands</strong> through BPI-AIA Life Assurance Corporation combines AIA's global insurance expertise with BPI's unparalleled domestic banking trust — creating a bancassurance offering that is more stable, more integrated, and more convenient than anything available elsewhere.</p>
+      <p>And through our strategic integration with <strong>MediCard Philippines</strong>, we close the gap between life insurance and actual healthcare access — ensuring that your coverage translates directly into the care your family needs, when they need it.</p>
+      <p>This is what <strong>Total Protection</strong> looks like.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA CARDS -->
+<div id="cta" class="cta-section full-width">
+  <div class="cta-inner">
+    <div class="cta-header fade-up">
+      <div class="section-label">Begin Your Journey</div>
+      <h2>Your Protection<br>Starts <em>Today</em></h2>
+      <p class="lead" style="margin: 0 auto; text-align: center;">Choose the path that speaks to your life — and let us build a plan that protects everything you have worked for.</p>
+    </div>
+
+    <div class="cta-grid fade-up">
+      <!-- Health CTA -->
+      <div class="cta-card cta-card-1">
+        <div class="cta-accent">For the Health-Conscious</div>
+        <h3>Live Well.<br>Stay Covered.</h3>
+        <p>Join AIA Vitality and start earning rewards for every healthy choice — while your MediCard integration ensures that if anything changes, you have the Philippines' most comprehensive hospital network on your side. Prevention and protection, in one plan.</p>
+        <a href="https://www.aia.com.ph/en/health-and-wellness/aia-vitality" target="_blank" class="cta-btn">Discover AIA Vitality + MediCard</a>
+      </div>
+
+      <!-- Investor CTA -->
+      <div class="cta-card cta-card-2">
+        <div class="cta-accent">For BPI Clients & Investors</div>
+        <h3>Your Wealth.<br>Now Protected.</h3>
+        <p>You have built something real with BPI. Now protect it. A BPI-AIA policy is the most seamless way to add a critical layer of life and health protection to your existing financial foundation — without the complexity of starting from scratch.</p>
+        <a href="https://www.aia.com.ph/en/our-products/investment" target="_blank" class="cta-btn">Explore BPI-AIA Solutions</a>
+      </div>
+
+      <!-- Family CTA -->
+      <div class="cta-card cta-card-3">
+        <div class="cta-accent">For Family Protection</div>
+        <h3>Everything<br>for Everyone.</h3>
+        <p>From your children's education to your retirement, from your spouse's security to your legacy — AIA's comprehensive family plans ensure that the people who depend on you will always have what they need. One conversation. Complete protection.</p>
+        <a href="https://www.aia.com.ph/en/our-products/protection" target="_blank" class="cta-btn">Protect My Family Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AIA <span>Philippines</span></div>
+  <div class="footer-tagline">Total Protection · Total Life · Total Trust</div>
+  <div class="footer-partners">
+    <div class="footer-partner">AIA Group</div>
+    <div class="footer-partner">BPI-AIA Bancassurance</div>
+    <div class="footer-partner">MediCard Philippines</div>
+    <div class="footer-partner">AIA Vitality</div>
+  </div>
+  <div class="footer-disclaimer">
+    This website is managed by an authorized AIA Philippines agency. AIA Philippines is regulated by the Insurance Commission of the Philippines. Products are subject to policy terms and conditions. All partnerships referenced are official strategic alliances. This is not an official AIA Group website.
+  </div>
+</footer>
+
+<script>
+// Intersection Observer for fade-up animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, 100);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Staggered children animation
+document.querySelectorAll('.trust-trio, .products-grid, .cta-grid, .bpi-features').forEach(parent => {
+  parent.querySelectorAll('.trust-card, .product-card, .cta-card, .bpi-feature').forEach((child, i) => {
+    child.style.transitionDelay = `${i * 0.1}s`;
+    child.classList.add('fade-up');
+    observer.observe(child);
+  });
+});
+</script>
+
+</body>
+</html>
